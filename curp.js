@@ -7,7 +7,7 @@ const data = {
         month: '05',
         day: '11'
     },
-    state: 'NUEVO LEON',
+    state: 'qUinTAnA rOo',
     sex: 'HOMBRE'
 };
 
@@ -49,17 +49,10 @@ const estados = {
 }
 
 function reemplazarEstado(texto) {
-    const palabras = texto.split(" ");
-    const resultado = palabras.map(palabra => {
-      const estado = palabra.toUpperCase();
-      if (estados.hasOwnProperty(estado)) {
-        return estados[estado];
-      }
-      return palabra;
-    });
-    return resultado.join(" ");
+    const regex = new RegExp(Object.keys(estados).join("\\b|\\b"), "gi");
+    const resultado = texto.replace(regex, match => estados[match.toUpperCase()]);
+    return resultado;
   }
-  
   
 
 function validateData(info) {
